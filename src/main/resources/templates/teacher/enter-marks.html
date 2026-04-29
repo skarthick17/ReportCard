@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Enter Marks</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  padding: 30px;
+}
+
+/* Container */
+.container {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 95%;
+  margin: auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Heading */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #f2f2f2;
+}
+
+/* Inputs */
+input, select {
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 90%;
+}
+
+/* Button */
+button {
+  padding: 8px 12px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #5a67d8;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Enter Marks</h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Subject</th>
+<th>Exam Marks</th>
+<th>Assignment Marks</th>
+<th>Month</th>
+<th>Save</th>
+</tr>
+
+<tr th:each="student : ${students}">
+<form action="/teacher/save-marks" method="post">
+
+<td>
+<input type="hidden" name="studentId" th:value="${student.id}">
+<input type="hidden" name="studentClass" th:value="${studentClass}">
+<input type="hidden" name="section" th:value="${section}">
+<span th:text="${student.id}"></span>
+</td>
+
+<td th:text="${student.name}"></td>
+
+<td>
+<select name="subject">
+<option value="Maths">Maths</option>
+<option value="Science">Science</option>
+<option value="English">English</option>
+<option value="Social">Social</option>
+</select>
+</td>
+
+<td>
+<input type="number" name="examMarks" min="0" max="100" required>
+</td>
+
+<td>
+<input type="number" name="assignmentMarks" min="0" max="100" required>
+</td>
+
+<td>
+<select name="month">
+<option value="January">January</option>
+<option value="February">February</option>
+<option value="March">March</option>
+<option value="April">April</option>
+<option value="May">May</option>
+<option value="June">June</option>
+<option value="July">July</option>
+<option value="August">August</option>
+<option value="September">September</option>
+<option value="October">October</option>
+<option value="November">November</option>
+<option value="December">December</option>
+</select>
+</td>
+
+<td>
+<button type="submit">Save</button>
+</td>
+
+</form>
+</tr>
+
+</table>
+
+</div>
+
+</body>
+</html>

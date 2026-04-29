@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Parent Portal</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  padding: 30px;
+}
+
+/* Main container */
+.container {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 700px;
+  margin: auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Heading */
+h2, h3 {
+  text-align: center;
+}
+
+/* Form styling */
+input, select {
+  width: 95%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #5a67d8;
+}
+
+/* Table styling */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #f2f2f2;
+}
+
+/* Result colors */
+.pass {
+  color: green;
+  font-weight: bold;
+}
+
+.fail {
+  color: red;
+  font-weight: bold;
+}
+
+/* Error message */
+.error {
+  color: red;
+  text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>View Report Card</h2>
+
+<form action="/parent/view-result" method="post">
+
+<label>Student ID</label>
+<input type="number" name="studentId" required>
+
+<label>Select Month</label>
+
+<select name="month">
+<option value="January">January</option>
+<option value="February">February</option>
+<option value="March">March</option>
+<option value="April">April</option>
+<option value="May">May</option>
+<option value="June">June</option>
+<option value="July">July</option>
+<option value="August">August</option>
+<option value="September">September</option>
+<option value="October">October</option>
+<option value="November">November</option>
+<option value="December">December</option>
+</select>
+
+<button type="submit">View Result</button>
+
+</form>
+
+<p class="error" th:text="${message}"></p>
+
+<div th:if="${student != null}">
+
+<h3>Student Details</h3>
+
+<p><b>ID:</b> <span th:text="${student.id}"></span></p>
+<p><b>Name:</b> <span th:text="${student.name}"></span></p>
+<p><b>Class:</b> <span th:text="${student.studentClass}"></span></p>
+<p><b>Section:</b> <span th:text="${student.section}"></span></p>
+
+</div>
+
+<table th:if="${marks != null}">
+
+<tr>
+<th>Subject</th>
+<th>Theory</th>
+<th>Assignment</th>
+<th>Total</th>
+<th>Result</th>
+</tr>
+
+<tr th:each="m : ${marks}">
+<td th:text="${m.subject}"></td>
+<td th:text="${m.examMarks}"></td>
+<td th:text="${m.assignmentMarks}"></td>
+<td th:text="${m.examMarks + m.assignmentMarks}"></td>
+
+<td>
+<span th:classappend="${(m.examMarks + m.assignmentMarks) >= 40 ? 'pass' : 'fail'}"
+      th:text="${(m.examMarks + m.assignmentMarks) >= 40 ? 'Pass' : 'Fail'}">
+</span>
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</body>
+</html>

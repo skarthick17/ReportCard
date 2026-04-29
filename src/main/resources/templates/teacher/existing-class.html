@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Select Class</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container */
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 320px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+/* Heading */
+h2 {
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Button */
+button {
+  width: 95%;
+  padding: 10px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #5a67d8;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Select Class</h2>
+
+<form action="/teacher/show-students" method="post">
+
+<label>Class</label>
+<input type="text" name="studentClass" placeholder="Enter class (e.g., 10)" required>
+
+<label>Section</label>
+<input type="text" name="section" placeholder="Enter section (e.g., A)" required>
+
+<button type="submit">Show Students</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

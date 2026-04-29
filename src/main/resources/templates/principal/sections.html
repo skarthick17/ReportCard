@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Sections</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container */
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* Headings */
+h2 {
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.section-btn {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.section-btn:hover {
+  background: #5a67d8;
+}
+
+/* Back link */
+.back-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: #667eea;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2 th:text="'Class ' + ${studentClass}"></h2>
+
+<h3>Select Section</h3>
+
+<a th:href="@{'/principal/class/' + ${studentClass} + '/A'}">
+  <button class="section-btn">Section A</button>
+</a>
+
+<a th:href="@{'/principal/class/' + ${studentClass} + '/B'}">
+  <button class="section-btn">Section B</button>
+</a>
+
+<a th:href="@{'/principal/class/' + ${studentClass} + '/C'}">
+  <button class="section-btn">Section C</button>
+</a>
+
+<a href="/principal/dashboard" class="back-link">← Back</a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Students</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  padding: 30px;
+}
+
+/* Container */
+.container {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 80%;
+  margin: auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Heading */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #f2f2f2;
+}
+
+/* Zebra rows */
+tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* Button */
+button {
+  padding: 6px 12px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #5a67d8;
+}
+
+/* Back link */
+.back-link {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: #667eea;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2 th:text="'Class ' + ${studentClass} + ' - Section ' + ${section}"></h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<!-- <th>View Marks</th> -->
+</tr>
+
+<tr th:each="s : ${students}">
+
+<td th:text="${s.id}"></td>
+<td th:text="${s.name}"></td>
+
+<!-- <td>
+<form action="/principal/view-marks" method="post">
+<input type="hidden" name="studentId" th:value="${s.id}">
+<button type="submit">View Marks</button>
+</form>
+</td> -->
+
+</tr>
+
+</table>
+
+<a href="/principal/dashboard" class="back-link">← Back</a>
+
+</div>
+
+</body>
+</html>

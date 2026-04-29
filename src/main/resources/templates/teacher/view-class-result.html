@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Class Marks</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  padding: 30px;
+}
+
+/* Container */
+.container {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 95%;
+  margin: auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Heading */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #f2f2f2;
+}
+
+/* Zebra effect */
+tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* Result colors */
+.pass {
+  color: green;
+  font-weight: bold;
+}
+
+.fail {
+  color: red;
+  font-weight: bold;
+}
+
+/* Back button */
+.back-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  background: #5a67d8;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Class Marks</h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+
+<th>English</th>
+<th>Result</th>
+
+<th>Maths</th>
+<th>Result</th>
+
+<th>Science</th>
+<th>Result</th>
+
+<th>Social</th>
+<th>Result</th>
+</tr>
+
+<tr th:each="s : ${students}">
+
+<td th:text="${s.id}"></td>
+<td th:text="${s.name}"></td>
+
+<!-- ENGLISH -->
+<td>
+<span th:each="m : ${marks}"
+      th:if="${m.studentId == s.id and m.subject == 'English'}"
+      th:text="${m.examMarks + m.assignmentMarks}">
+</span>
+</td>
+
+<td>
+<span th:each="m : ${marks}"
+      th:if="${m.studentId == s.id and m.subject == 'English'}"
+      th:classappend="${(m.examMarks + m.assignmentMarks) >= 40 ? 'pass' : 'fail'}"
+      th:text="${(m.examMarks + m.assignmentMarks) >= 40 ? 'Pass' : 'Fail'}">
+</span>
+</td>
+
+<!-- MATHS -->
+<td>
+<span th:each="m : ${marks}"
+      th:if="${m.studentId == s.id and m.subject == 'Maths'}"
+      th:text="${m.examMarks + m.assignmentMarks}">
+</span>
+</td>
+
+<td>
+<span th:each="m : ${marks}"
+      th:if="${m.studentId == s.id and m.subject == 'Maths'}"
+      th:classappend="${(m.examMarks + m.assignmentMarks) >= 40 ? 'pass' : 'fail'}"
+      th:text="${(m.examMarks + m.assignmentMarks) >= 40 ? 'Pass' : 'Fail'}">
+</span>
+</td>
+
+<!-- SCIENCE -->
+<td>
+<span th:each="m : ${marks}"
+      th:if="${m.studentId == s.id and m.subject == 'Science'}"
+      th:text="${m.examMarks + m.assignmentMarks}">
+</span>
+</td>
+
+<td>
+<span th:each="m : ${marks}"
+      th:if="${m.studentId == s.id and m.subject == 'Science'}"
+      th:classappend="${(m.examMarks + m.assignmentMarks) >= 40 ? 'pass' : 'fail'}"
+      th:text="${(m.examMarks + m.assignmentMarks) >= 40 ? 'Pass' : 'Fail'}">
+</span>
+</td>
+
+<!-- SOCIAL -->
+<td>
+<span th:each="m : ${marks}"
+      th:if="${m.studentId == s.id and m.subject == 'Social'}"
+      th:text="${m.examMarks + m.assignmentMarks}">
+</span>
+</td>
+
+<td>
+<span th:each="m : ${marks}"
+      th:if="${m.studentId == s.id and m.subject == 'Social'}"
+      th:classappend="${(m.examMarks + m.assignmentMarks) >= 40 ? 'pass' : 'fail'}"
+      th:text="${(m.examMarks + m.assignmentMarks) >= 40 ? 'Pass' : 'Fail'}">
+</span>
+</td>
+
+</tr>
+
+</table>
+
+<a href="/teacher/view-class">
+  <button class="back-btn">Back</button>
+</a>
+
+</div>
+
+</body>
+</html>

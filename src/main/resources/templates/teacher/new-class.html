@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Create New Class</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  padding: 30px;
+}
+
+/* Container */
+.container {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  width: 600px;
+  margin: auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Headings */
+h2, h3 {
+  text-align: center;
+}
+
+/* Inputs */
+input, select {
+  width: 95%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #f2f2f2;
+}
+
+/* Buttons */
+button {
+  padding: 8px 12px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #5a67d8;
+}
+
+/* Special buttons */
+.add-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.remove-btn {
+  background: #e53e3e;
+}
+
+.remove-btn:hover {
+  background: #c53030;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 15px;
+}
+</style>
+
+<script>
+function addStudentRow() {
+    let table = document.getElementById("studentTable");
+    let row = table.insertRow(-1);
+
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+
+    cell1.innerHTML = "<input type='text' name='studentNames' required>";
+    cell2.innerHTML = "<button type='button' class='remove-btn' onclick='deleteRow(this)'>Remove</button>";
+}
+
+function deleteRow(btn) {
+    let row = btn.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Create New Class</h2>
+
+<form action="/teacher/save-class" method="post">
+
+<label>Teacher Name</label>
+<input type="text" name="teacherName" required>
+
+<label>Class</label>
+<select name="studentClass">
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+</select>
+
+<label>Section</label>
+<select name="section">
+<option value="A">A</option>
+<option value="B">B</option>
+<option value="C">C</option>
+</select>
+
+<h3>Students</h3>
+
+<table id="studentTable">
+<tr>
+<th>Student Name</th>
+<th>Action</th>
+</tr>
+
+<tr>
+<td><input type="text" name="studentNames" required></td>
+<td></td>
+</tr>
+</table>
+
+<button type="button" class="add-btn" onclick="addStudentRow()">Add Student</button>
+
+<button type="submit" class="submit-btn">Save Class</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

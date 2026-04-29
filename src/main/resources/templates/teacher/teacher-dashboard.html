@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Teacher Dashboard</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container */
+.container {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* Heading */
+h2 {
+  margin-bottom: 30px;
+}
+
+/* Buttons */
+.menu-btn {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.menu-btn:hover {
+  background: #5a67d8;
+}
+
+/* Logout button (optional style) */
+.logout-btn {
+  background: #e53e3e;
+}
+
+.logout-btn:hover {
+  background: #c53030;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Teacher Dashboard</h2>
+
+<a href="/teacher/new-class">
+  <button class="menu-btn">New Class</button>
+</a>
+
+<a href="/teacher/existing-class">
+  <button class="menu-btn">Existing Class</button>
+</a>
+
+<a href="/teacher/view-class">
+  <button class="menu-btn">View Class</button>
+</a>
+
+<!-- Optional logout -->
+<!--
+<a href="/logout">
+  <button class="menu-btn logout-btn">Logout</button>
+</a>
+-->
+
+</div>
+
+</body>
+</html>
